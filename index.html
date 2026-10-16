@@ -6,6 +6,10 @@
 <title>MDJ Mortgages Basingstoke</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Award-winning mortgage and protection advice in Basingstoke. First-time buyers, self-employed, remortgages and later-life lending. Free first consultation. 5.0 on Google from 186 reviews.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#141210">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -123,7 +127,12 @@ header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .field{display:grid;gap:8px;margin-top:20px}
 .field-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.875rem;color:var(--on-ink-dim)}
 .field-top output{color:var(--on-ink);font-family:var(--f-mono);font-size:1rem}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--brass) var(--p,40%),#3a342c var(--p,40%));outline-offset:6px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--brass) var(--p,40%),#3a342c var(--p,40%));outline:none;margin:10px 0;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:pan-y}
+input[type=range]:focus{outline:none}
+input[type=range]::-moz-focus-outer{border:0}
+input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 1px var(--brass),0 0 0 6px rgba(201,162,83,.35)}
+input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 1px var(--brass),0 0 0 6px rgba(201,162,83,.35)}
+.calc .field,.calc .toggle{-webkit-user-select:none;user-select:none}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--brass-hi);border:3px solid var(--ink);box-shadow:0 0 0 1px var(--brass);cursor:grab}
 input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--brass-hi);border:3px solid var(--ink);box-shadow:0 0 0 1px var(--brass);cursor:grab}
 .toggle{display:grid;grid-template-columns:1fr 1fr;background:#120f0d;border:1px solid var(--ink-line);border-radius:999px;padding:4px;margin-top:20px}
@@ -172,7 +181,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .cd-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .cd-card label{font-size:.8125rem;font-weight:600;color:var(--slate);display:grid;gap:6px}
 select,input[type=text],input[type=email],input[type=tel]{width:100%;min-height:50px;border-radius:10px;border:1px solid #d6d0c3;background:#fff;color:var(--text);font:500 1rem var(--f-body);padding:0 14px}
-select:focus,input:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:var(--brass)}
+select:focus,input[type=text]:focus,input[type=email]:focus,input[type=tel]:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:var(--brass)}
 .timeline{margin-top:26px;position:relative;height:56px}
 .timeline .bar{position:absolute;left:0;right:0;top:22px;height:10px;border-radius:10px;background:linear-gradient(90deg,#e4ddcf 0%,#e4ddcf 100%)}
 .timeline .window{position:absolute;top:22px;height:10px;border-radius:10px;background:var(--foil)}
