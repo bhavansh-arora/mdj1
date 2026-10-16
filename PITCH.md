@@ -32,7 +32,7 @@ The home page includes:
 
 ## Still needed from MDJ before launch
 
-- A professional photo of Mark (and Jodie, with her role)
+- Permission to reuse the team photos from mdjmortgages.com (one is credited to Sandra Sergeant Photography)
 - The logo files
 - Confirmation of the award names and years, and the review count on launch day
 - A form endpoint (Pipedrive web form or webhook) for the enquiry and referral forms. The code hooks are marked `Hook point` in `assets/site.js`
