@@ -219,6 +219,94 @@
     }
   }
 
+
+  /* ---------- Motion ---------- */
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Stagger siblings in grids */
+  $$(".features, .paths, .steps, .review-grid, .fees-grid, .team-points, .hv-stats").forEach(function(grid){
+    Array.prototype.forEach.call(grid.children, function(el, i){ el.style.setProperty("--i", i % 6); });
+  });
+
+  /* Card spotlight follows the pointer */
+  $$(".feature").forEach(function(card){
+    card.addEventListener("pointermove", function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      card.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
+
+  /* Smooth FAQ open/close */
+  $$("details").forEach(function(d){
+    var sum = d.querySelector("summary"), ans = d.querySelector(".ans");
+    if (!sum || !ans || reduce || !ans.animate) return;
+    sum.addEventListener("click", function(e){
+      e.preventDefault();
+      if (d.open){
+        var h = ans.offsetHeight;
+        ans.animate([{height: h + "px", opacity: 1}, {height: "0px", opacity: 0}], {duration: 280, easing: "ease"}).onfinish = function(){ d.open = false; };
+      } else {
+        d.open = true;
+        var h2 = ans.offsetHeight;
+        ans.animate([{height: "0px", opacity: 0}, {height: h2 + "px", opacity: 1}], {duration: 320, easing: "cubic-bezier(.2,.7,.2,1)"});
+      }
+    });
+  });
+
+  if (!reduce){
+    /* Scroll progress bar */
+    var bar = document.createElement("div");
+    bar.className = "progress-bar"; bar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(bar);
+    var onScroll = function(){
+      var max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.setProperty("--sp", max > 0 ? Math.min(scrollY / max, 1) : 0);
+    };
+    addEventListener("scroll", onScroll, {passive: true}); onScroll();
+
+    /* Rising gold sparks in dark heroes */
+    $$(".hero, .page-hero, .cta-band").forEach(function(h){
+      for (var i = 0; i < 14; i++){
+        var sp = document.createElement("span");
+        sp.className = "spark"; sp.setAttribute("aria-hidden", "true");
+        sp.style.left = (Math.random() * 100) + "%";
+        sp.style.animationDuration = (6 + Math.random() * 8) + "s";
+        sp.style.animationDelay = (-Math.random() * 12) + "s";
+        var sz = 1.5 + Math.random() * 2.5; sp.style.width = sp.style.height = sz + "px";
+        h.appendChild(sp);
+      }
+    });
+
+    /* Hero glow follows the pointer */
+    $$(".hero, .page-hero").forEach(function(h){
+      h.addEventListener("pointermove", function(e){
+        var r = h.getBoundingClientRect();
+        h.style.setProperty("--gx", ((e.clientX - r.left) / r.width - .5) * 120 + "px");
+        h.style.setProperty("--gy", ((e.clientY - r.top) / r.height - .5) * 60 + "px");
+      });
+    });
+
+    /* Count-up figures */
+    var fmt = function(n, d){ return n.toLocaleString("en-GB", {minimumFractionDigits: d, maximumFractionDigits: d}); };
+    var countUp = function(el){
+      var to = +el.dataset.count, d = +(el.dataset.decimals || 0), pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+      var start = null, dur = 1400;
+      var tick = function(t){
+        if (!start) start = t;
+        var p = Math.min((t - start) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = pre + fmt(to * e, d) + suf;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    var counters = $$("[data-count]");
+    if ("IntersectionObserver" in window){
+      var cio = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting){ countUp(en.target); cio.unobserve(en.target); } }); }, {threshold: .4});
+      counters.forEach(function(c){ cio.observe(c); });
+    }
+  }
+
   /* Reveal on scroll (content stays visible if unsupported) */
   if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches){
     $$(".reveal").forEach(function(el){ if (el.getBoundingClientRect().top < innerHeight) el.classList.add("in"); });

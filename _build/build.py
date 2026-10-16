@@ -46,8 +46,20 @@ def partial(name):
 
 
 def include(body):
-    """Replace {{> name}} with partials/name.html."""
-    return re.sub(r"\{\{>\s*([\w-]+)\s*\}\}", lambda m: partial(m.group(1)), body)
+    """Replace {{> name}} with partials/name.html and {{visual:key}} with that page's hero card."""
+    body = re.sub(r"\{\{>\s*([\w-]+)\s*\}\}", lambda m: partial(m.group(1)), body)
+    return re.sub(r"\{\{visual:([\w-]+)\}\}", lambda m: hero_visual(*VISUALS[m.group(1)]), body)
+
+
+# Hero cards for the bespoke pages: (art, figures, floating chips)
+VISUALS = {
+    "about": ("about", [("3", "Award years, 2024–26", 3), ("186", "Five-star reviews", 186), ("£0", "First consultation", 0, "£")], ("Best Broker 2026", "Chineham Court")),
+    "reviews": ("reviews", [("5.0", "Google rating", 5, "", "", 1), ("186", "Five-star reviews", 186), ("100%", "Five stars", 100, "", "%")], ("“Really know their stuff”", "Google reviews")),
+    "fees": ("calc", [("£0", "First consultation", 0, "£"), ("£295", "Typical fee", 295, "£"), ("£1,000", "Maximum fee", 1000, "£")], ("No hidden charges", "Explained upfront")),
+    "faq": ("faq", [("10", "Questions answered", 10), ("£0", "First consultation", 0, "£"), ("5.0", "Google rating", 5, "", "", 1)], ("Plain English", "WhatsApp us")),
+    "calculators": ("calc", [("3", "Free calculators", 3), ("0", "Emails needed", 0), ("5.0", "Google rating", 5, "", "", 1)], ("Live estimates", "No sign-up")),
+    "refer": ("refer", [("£50", "Amazon voucher", 50, "£"), ("186", "Happy clients", 186), ("5.0", "Google rating", 5, "", "", 1)], ("Per completed referral", "Friends &amp; family")),
+}
 
 
 def link(href, label, current):
@@ -149,6 +161,27 @@ def read_page(name):
     return meta, body
 
 
+def stat(value, label, count=None, prefix="", suffix="", decimals=0):
+    """One animated figure. count is the number to count up to; value is the resting text."""
+    attrs = ""
+    if count is not None:
+        attrs = f' data-count="{count}" data-prefix="{prefix}" data-suffix="{suffix}" data-decimals="{decimals}"'
+    return f'<div class="hv-stat"><b{attrs}>{value}</b><span>{label}</span></div>'
+
+
+def hero_visual(art, stats, chips=("★ 5.0 on Google", "FCA regulated")):
+    """Right-hand card in an inner page hero: line illustration, figures, floating chips."""
+    figures = "".join(stat(*st) if isinstance(st, tuple) else st for st in stats)
+    return f"""<div class="hero-visual">
+      <span class="chip chip-a">{chips[0]}</span>
+      <span class="chip chip-b">{chips[1]}</span>
+      <div class="hv-card">
+        <div class="hv-art">{partial("art-" + art)}</div>
+        <div class="hv-stats">{figures}</div>
+      </div>
+    </div>"""
+
+
 def li(items):
     return "".join(f"<li>{i}</li>" for i in items)
 
@@ -176,15 +209,18 @@ def service_body(s):
     n = f" n{len(s['cards'])}" if len(s["cards"]) == 4 else ""
     return f"""
 <section class="page-hero dark">
-  <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>{s['crumb']}</span></nav>
-    <p class="eyebrow">{s['eyebrow']}</p>
-    <h1>{s['h1']}</h1>
-    <p class="lede">{s['lede']}</p>
-    <div class="hero-ctas">
-      <a class="btn btn-gold" href="contact.html?goal={goal}"><svg aria-hidden="true"><use href="#i-cal"/></svg>{s['cta']}</a>
-      <a class="btn btn-ghost" href="{WHATSAPP}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp Mark</a>
+  <div class="wrap has-visual">
+    <div class="hero-copy">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>{s['crumb']}</span></nav>
+      <p class="eyebrow">{s['eyebrow']}</p>
+      <h1>{s['h1']}</h1>
+      <p class="lede">{s['lede']}</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="contact.html?goal={goal}"><svg aria-hidden="true"><use href="#i-cal"/></svg>{s['cta']}</a>
+        <a class="btn btn-ghost" href="{WHATSAPP}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp Mark</a>
+      </div>
     </div>
+    {hero_visual(s['art'], [s['stat'], ("£0", "First consultation", 0, "£"), ("5.0", "Google rating", 5, "", "", 1)])}
   </div>
 </section>
 
@@ -202,6 +238,8 @@ def service_body(s):
     </div>
   </div>
 </section>
+
+{{{{> ticker}}}}
 
 {tool}
 
