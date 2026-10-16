@@ -1,0 +1,92 @@
+title: Mortgage Calculators | MDJ Mortgages Basingstoke
+description: Free mortgage calculators: how much could you borrow, monthly repayments and when to remortgage.
+---
+<section class="page-hero dark">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Calculators</span></nav>
+    <p class="eyebrow">Mortgage calculators</p>
+    <h1>Run the numbers before you talk to anyone</h1>
+    <p class="lede">Quick estimates, no email needed. When you're ready, we'll turn them into real figures from real lenders.</p>
+    <div class="tabs" role="list">
+      <a role="listitem" href="#borrow"><svg aria-hidden="true"><use href="#i-calc"/></svg>How much can I borrow?</a>
+      <a role="listitem" href="#repay"><svg aria-hidden="true"><use href="#i-home"/></svg>Monthly repayments</a>
+      <a role="listitem" href="#countdown"><svg aria-hidden="true"><use href="#i-clock"/></svg>When to remortgage</a>
+    </div>
+  </div>
+</section>
+
+<section id="borrow" class="tint">
+  <div class="wrap calc-row">
+    <div class="reveal">
+      <p class="eyebrow">Borrowing</p>
+      <h2 class="h2">How much could you borrow?</h2>
+      <p class="lede" style="margin-top:16px">Most lenders start at around 4 to 4.5 times income. Some go higher for certain professions or larger incomes, and all of them check your outgoings and credit history.</p>
+      <ul class="checklist" style="margin-top:24px"><li>Add a second applicant's income for joint mortgages</li><li>Buying power adds your deposit to the loan</li><li>Loan-to-value (LTV) affects the rates you're offered</li></ul>
+    </div>
+    <aside class="calc reveal" aria-labelledby="calcTitle">
+      <p class="eyebrow">Estimate</p>
+      <h3 id="calcTitle" class="calc-h">Your borrowing range</h3>
+      <div class="toggle" role="group" aria-label="Number of applicants">
+        <button type="button" id="appSingle" aria-pressed="true">Just me</button>
+        <button type="button" id="appJoint" aria-pressed="false">Two of us</button>
+      </div>
+      <div class="field">
+        <div class="field-top"><label for="inc1">Your yearly income</label><output id="inc1Out" for="inc1">£45,000</output></div>
+        <input type="range" id="inc1" min="15000" max="200000" step="1000" value="45000">
+      </div>
+      <div class="field" id="inc2Field" hidden>
+        <div class="field-top"><label for="inc2">Second applicant's income</label><output id="inc2Out" for="inc2">£32,000</output></div>
+        <input type="range" id="inc2" min="0" max="200000" step="1000" value="32000">
+      </div>
+      <div class="field">
+        <div class="field-top"><label for="dep">Deposit saved</label><output id="depOut" for="dep">£25,000</output></div>
+        <input type="range" id="dep" min="0" max="250000" step="1000" value="25000">
+      </div>
+      <div class="calc-result" aria-live="polite">
+        <div class="label">You could typically borrow</div>
+        <div class="big"><span class="foil" id="borrowRange">£180k – £203k</span></div>
+        <div class="meta"><span>Buying power <b id="budget">£228,000</b></span><span>Loan-to-value <b id="ltv">89%</b></span></div>
+      </div>
+      <a class="btn btn-gold" href="contact.html?goal=First%20home" id="calcCta">Get my exact figure from Mark</a>
+      <p class="fine">Illustration only, using 4–4.5× income.</p>
+    </aside>
+  </div>
+</section>
+
+<section id="repay">
+  <div class="wrap calc-row">
+    <div class="reveal">
+      <p class="eyebrow">Repayments</p>
+      <h2 class="h2">What would my monthly payment be?</h2>
+      <p class="lede" style="margin-top:16px">See the monthly cost on a repayment mortgage, where you pay off the loan over the term, compared with interest-only, where the loan stays the same.</p>
+      <p class="fine-dark">Uses a fixed rate for the whole term. Real deals change rate when the initial period ends, and fees aren't included.</p>
+    </div>
+    <aside class="calc reveal" aria-labelledby="repTitle">
+      <p class="eyebrow">Estimate</p>
+      <h3 id="repTitle" class="calc-h">Monthly payment</h3>
+      <div class="field">
+        <div class="field-top"><label for="repAmt">Mortgage amount</label><output id="repAmtOut" for="repAmt">£200,000</output></div>
+        <input type="range" id="repAmt" min="25000" max="1000000" step="5000" value="200000">
+      </div>
+      <div class="field">
+        <div class="field-top"><label for="repRate">Interest rate</label><output id="repRateOut" for="repRate">4.50%</output></div>
+        <input type="range" id="repRate" min="0.5" max="9" step="0.05" value="4.5">
+      </div>
+      <div class="field">
+        <div class="field-top"><label for="repTerm">Term</label><output id="repTermOut" for="repTerm">25 years</output></div>
+        <input type="range" id="repTerm" min="5" max="40" step="1" value="25">
+      </div>
+      <div class="calc-result" aria-live="polite">
+        <div class="label">Repayment mortgage</div>
+        <div class="big"><span class="foil" id="repMonthly">£1,112</span><small class="per">/month</small></div>
+        <div class="meta"><span>Interest-only <b id="repIO">£750</b>/month</span><span>Total interest <b id="repTotal">£133,489</b></span></div>
+      </div>
+      <a class="btn btn-gold" href="contact.html?goal=Remortgage">Find me a lower rate</a>
+      <p class="fine">Illustration only. Your home may be repossessed if you do not keep up repayments on your mortgage.</p>
+    </aside>
+  </div>
+</section>
+
+{{> countdown}}
+
+{{> cta}}

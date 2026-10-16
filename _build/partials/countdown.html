@@ -1,0 +1,41 @@
+<section class="countdown" id="countdown">
+  <div class="wrap cd-grid">
+    <div class="cd-copy reveal">
+      <p class="eyebrow">Remortgage reminder</p>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);margin-top:14px">When does your fixed rate end?</h2>
+      <p class="lede" style="margin-top:16px">When a fix ends, most lenders move you to their standard variable rate. Enter your end date and we'll show you when to act.</p>
+      <ul>
+        <li><b>6m</b><span><strong>Start looking</strong>A new rate can usually be secured about six months before your deal ends.</span></li>
+        <li><b>3m</b><span><strong>Lock it in</strong>If rates fall before completion, we can often switch you to the better one.</span></li>
+        <li><b>0</b><span><strong>No gap</strong>Your new deal starts the day the old one ends.</span></li>
+      </ul>
+    </div>
+    <div class="cd-card reveal" aria-labelledby="cdTitle">
+      <h3 id="cdTitle" style="font-size:1.5rem">Your fixed rate timeline</h3>
+      <div class="cd-inputs" style="margin-top:18px">
+        <label for="cdMonth">Month it ends
+          <select id="cdMonth"></select>
+        </label>
+        <label for="cdYear">Year
+          <select id="cdYear"></select>
+        </label>
+      </div>
+      <div class="timeline" aria-hidden="true" id="timeline">
+        <div class="bar"></div>
+        <div class="window" id="tlWindow"></div>
+        <div class="now" id="tlNow"></div>
+        <span class="tick" style="left:0%;transform:none">−12m</span>
+        <span class="tick" style="left:50%">−6m</span>
+        <span class="tick" style="left:100%;transform:translateX(-100%)">Ends</span>
+      </div>
+      <div class="cd-out" aria-live="polite">
+        <div class="cd-num mono" id="cdNum">7</div>
+        <div>
+          <span class="status" id="cdStatus">Plenty of time</span>
+          <p id="cdMsg">Months until your deal ends. We'll get in touch when your six-month window opens.</p>
+        </div>
+      </div>
+      <a class="btn btn-ink" href="contact.html?goal=Remortgage" id="cdCta">Remind me when it's time</a>
+    </div>
+  </div>
+</section>

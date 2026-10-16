@@ -1,0 +1,45 @@
+title: Refer a Friend | £50 Amazon Voucher | MDJ Mortgages
+description: Refer a friend to MDJ Mortgages and receive a £50 Amazon voucher for every referral that completes with us.
+---
+<section class="page-hero dark">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Refer a friend</span></nav>
+    <p class="eyebrow">Refer a friend</p>
+    <h1>Know someone who needs advice? <span class="foil">Earn £50.</span></h1>
+    <p class="lede">You'll receive a £50 Amazon voucher for every referral that completes a mortgage or protection policy with us.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">Three simple steps</h2>
+      <ol class="steps-list">
+        <li><b>Tell us who</b><span>Send us your friend's details with their permission.</span></li>
+        <li><b>We look after them</b><span>Mark gets in touch and gives them the same free first consultation you had.</span></li>
+        <li><b>You get £50</b><span>When their mortgage or protection policy completes, we send your Amazon voucher.</span></li>
+      </ol>
+    </div>
+    <form class="wizard light-form reveal" id="referForm" novalidate>
+      <h3>Refer someone</h3>
+      <p class="hint">Please check your friend is happy for us to contact them.</p>
+      <div class="form-grid">
+        <label for="rYourName">Your name<input type="text" id="rYourName" autocomplete="name" required></label>
+        <label for="rYourEmail">Your email<input type="email" id="rYourEmail" autocomplete="email" required></label>
+        <label for="rFriendName">Friend's name<input type="text" id="rFriendName" required></label>
+        <label for="rFriendPhone">Friend's phone<input type="tel" id="rFriendPhone" inputmode="tel" required></label>
+        <label class="consent" for="rConsent"><input type="checkbox" id="rConsent" required><span>My friend has agreed to be contacted by MDJ Mortgages.</span></label>
+      </div>
+      <p class="err" id="rErr" role="alert"></p>
+      <button type="submit" class="btn btn-gold" style="width:100%;margin-top:8px">Send referral</button>
+      <div class="done" id="rDone" hidden>
+        <div class="tick"><svg aria-hidden="true"><use href="#i-check"/></svg></div>
+        <h3>Thank you</h3>
+        <p class="hint">We'll be in touch with your friend shortly.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+{{> cta}}

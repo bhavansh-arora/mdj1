@@ -1,6 +1,6 @@
 # MDJ Mortgages — website concept
 
-A one-page concept site in `index.html`. It's a single static file, so it opens in any browser and can be hosted anywhere.
+A 14-page concept site (plus a 404 page) live at https://mdj1.codebunny.net/. It's plain static HTML, so it can be hosted anywhere. See README.md for the page list and how to edit it.
 
 ## The three ideas (for the reply to Mark)
 
@@ -8,7 +8,14 @@ A one-page concept site in `index.html`. It's a single static file, so it opens 
 2. **A remortgage countdown.** Visitors pick the month their fixed rate ends and see how many months are left, whether their six-month window is open, and a "Remind me" button. This captures remortgage leads months before the fix ends.
 3. **Lead with the reviews and awards, and make contact easy.** The 2026 Best Mortgage Broker award, 5.0 from 186 Google reviews and the FCA status are all visible in the first screen. On phones, a fixed bar keeps **Call / WhatsApp / Free review** one tap away. The enquiry form is three short steps (goal, timing, contact) and can feed straight into Pipedrive.
 
-## What's on the page
+## What's on the site
+
+- **Service pages** for first-time buyers, moving home, remortgage, self-employed, equity release and protection. Each has its own help cards, a document or step checklist, a client quote, FAQs and a call to action that opens the enquiry form with the right option chosen.
+- **Calculators page** with borrowing, monthly repayment and remortgage-timing tools.
+- **About, Reviews, Fees, FAQs, Contact and Refer a friend** pages.
+
+The home page includes:
+
 
 - Hero with award chip, headline, Calendly and WhatsApp buttons, and the review score
 - Borrowing calculator (4–4.5× income, LTV and buying power)
@@ -28,7 +35,8 @@ A one-page concept site in `index.html`. It's a single static file, so it opens 
 - A professional photo of Mark (and Jodie, with her role)
 - The logo files
 - Confirmation of the award names and years, and the review count on launch day
-- A form endpoint (Pipedrive web form or webhook). The code hook is marked `Hook point` in the script
+- A form endpoint (Pipedrive web form or webhook) for the enquiry and referral forms. The code hooks are marked `Hook point` in `assets/site.js`
+- MDJ's full privacy policy (the contact page has a short summary only)
 - Final compliance sign-off from Stonebridge
 
 ---
